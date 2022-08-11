@@ -94,7 +94,7 @@ class productController{
             if(!product){
                 return res.status(400).json({msg:"Truyện này không tồn tại."});
             }
-            await Products.findByIdAndUpdate(product._id,{title,image1,image2,kinds,content,status});
+            await Products.findOneAndUpdate({slug:req.params.slug},{title,image1,image2,kinds,content,status});
             return res.status(200).json({msg:"Cập nhật thành công."});
         }
         catch(err){
@@ -104,6 +104,10 @@ class productController{
 
     async deleteProduct(req,res){
         try{
+            const {title} = req.body;
+            if(title !== 'Minhquang265'){
+                return res.status(400).json({msg:"Bạn không thể xóa."});
+            }
             const product = await Products.findOne({slug:req.params.slug});
             if(!product){
                 return res.status(400).json({msg:"Truyện này không hề tồn tại."});

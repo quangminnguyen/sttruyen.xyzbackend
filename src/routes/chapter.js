@@ -3,7 +3,7 @@ const chapterController = require('../controllers/chapterController');
 const middleWareController = require('../controllers/middleWareController');
 
 
-router.post('/create/:movie',middleWareController.verifyAdmin,chapterController.createChapter);
+router.post('/create/:slug',middleWareController.verifyAdmin,chapterController.createChapter);
 router.delete('/delete/:id',middleWareController.verifyAdmin,chapterController.deleteChapter);
 router.put('/update/:id',middleWareController.verifyAdmin,chapterController.updateChapter);
 
