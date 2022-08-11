@@ -135,7 +135,7 @@ class productController{
         try{
             const product = await Products.findOne({slug:req.params.slug}).populate({
                 path:'chapter',
-                select:'title content'
+                select:'title content watching createdAt'
             });
             if(!product){
                 return res.status(400).json({msg:"Không tồn tại."});
