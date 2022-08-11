@@ -6,6 +6,7 @@ router.post('/create',middleWareController.verifyAdmin,productController.createP
 router.put('/update/:slug',middleWareController.verifyAdmin,productController.updateProduct);
 router.delete('/delete/:slug',middleWareController.verifyAdmin,productController.deleteProduct);
 router.get('/default',productController.getDefaultProduct);
+router.get('/:slug',productController.getOne);
 router.get('/',productController.getProduct);
 
 module.exports = router;

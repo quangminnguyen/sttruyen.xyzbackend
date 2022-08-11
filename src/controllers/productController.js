@@ -126,6 +126,22 @@ class productController{
             return res.status(500).json({msg:err.message});
         }
     }
+
+    async getOne(req,res){
+        try{
+            const product = await Products.findOne({slug:req.params.slug}).populate({
+                path:'chapter',
+                select:'title content'
+            });
+            if(!product){
+                return res.status(400).json({msg:"Không tồn tại."});
+            }
+            return res.status(200).json({product});
+        }
+        catch(err){
+            return res.status(500).json({msg:err.message});
+        }
+    }
 }
 
 module.exports = new productController;
