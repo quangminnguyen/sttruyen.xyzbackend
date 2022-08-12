@@ -1,6 +1,7 @@
 
 const Products = require('../models/productController');
 const slutify = require('slugify');
+const Kinds = require('../models/kindController');
 
 class apiRequest{
     constructor(query,queryString){
@@ -60,14 +61,30 @@ class apiRequest{
 class productController{
     async getProduct(req,res){
         try{
-            const api = new apiRequest(Products.find().populate({
-                path:"chapter",
-                select:"title content"
-            })
-            ,req.query).paginating().sorting().filtering().searching();
-            const product = await api.query;
-            const count = await Products.count(api.query.limit(null).skip(null));
-            res.status(200).json({Products:product,count});
+            const kind = req.query.kind;
+
+            if(!kind){
+                const api = new apiRequest(Products.find().populate({
+                    path:"chapter",
+                    select:"title content"
+                })
+                ,req.query).paginating().sorting().filtering().searching();
+                const product = await api.query;
+                const count = await Products.count(api.query.limit(null).skip(null));
+                res.status(200).json({Products:product,count});
+            }
+            else{
+                const api = new apiRequest(Products.find({
+                    "kinds.slug":kind
+                }).populate({
+                    path:"chapter",
+                    select:"title content"
+                })
+                ,req.query).paginating().sorting().filtering().searching();
+                const product = await api.query;
+                const count = await Products.count(api.query.limit(null).skip(null));
+                res.status(200).json({Products:product,count});
+            }
         }
         catch(err){
             return res.status(500).json({msg:err.message});
