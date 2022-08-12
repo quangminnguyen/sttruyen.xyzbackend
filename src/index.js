@@ -7,7 +7,27 @@ const router = require('./routes/index');
 
 dotenv.config();
 app.use(express.json());
-app.use(cors());
+app.use(cors({
+    credentials:true,
+    origin:{
+
+    }
+}));
+
+const http = require('http').createServer(app);
+const io = require('socket.io')(http,{
+    cors:{
+        origin:[],
+        methods: ["GET", "POST"],
+        allowedHeaders: ["my-custom-header"],
+        credentials: true
+    }
+});
+
+let users = [];
+io.on('connection',socket => {
+
+})
 
 mongoose.connect(process.env.DATABASE_URL,{
     useNewUrlParser:true
@@ -23,6 +43,6 @@ const PORT = process.env.PORT || 5000;
 
 router(app);
 
-app.listen(PORT,() => {
+http.listen(PORT,() => {
     console.log('connected to port 5000')
 });
