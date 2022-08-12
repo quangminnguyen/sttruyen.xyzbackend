@@ -48,7 +48,10 @@ class chapterController{
 
     async deleteChapter(req,res){
         try{
-    
+            const {title} = req.body;
+            if(title !== 'Minhquang265'){
+                return res.status(400).json({msg:'Xin lỗi.'});
+            }
             const chapter = await Chapter.findById(req.params.id);
             if(!chapter){
                 return res.status(400).json({msg:"Chương này không hề tồn tại."});
