@@ -16,10 +16,7 @@ app.use(cors({credentials: true, origin: [url,'sttruyen.xyz','www.sttruyen.xyz',
 const http = require('http').createServer(app);
 const io = require('socket.io')(http,{
     cors:{
-        origin:[url,'sttruyen.xyz','www.sttruyen.xyz','http://sttruyen.xyz','http://www.sttruyen.xyz','https://www.sttruyen.xyz'],
-        methods: ["GET", "POST"],
-        allowedHeaders: ["my-custom-header"],
-        credentials: true
+        origin:[url,'sttruyen.xyz','www.sttruyen.xyz','http://sttruyen.xyz','http://www.sttruyen.xyz','https://www.sttruyen.xyz']
     }
 });
 
