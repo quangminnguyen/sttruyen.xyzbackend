@@ -9,17 +9,14 @@ const Chapters = require('./models/chapterController');
 
 dotenv.config();
 app.use(express.json());
-app.use(cors({
-    credentials:true,
-    origin:{
+const url = 'https://sttruyen.xyz';
 
-    }
-}));
+app.use(cors({credentials: true, origin: [url,'sttruyen.xyz','www.sttruyen.xyz','http://sttruyen.xyz','http://www.sttruyen.xyz','https://www.sttruyen.xyz']}));
 
 const http = require('http').createServer(app);
 const io = require('socket.io')(http,{
     cors:{
-        origin:['http://localhost:3000'],
+        origin:[url,'sttruyen.xyz','www.sttruyen.xyz','http://sttruyen.xyz','http://www.sttruyen.xyz','https://www.sttruyen.xyz'],
         methods: ["GET", "POST"],
         allowedHeaders: ["my-custom-header"],
         credentials: true
