@@ -14,8 +14,18 @@ app.use(
     cors({
         credentials: true,
         origin: "https://sttruyenhay.000webhostapp.com/",
+        optionsSuccessStatus: 200,
     })
 );
+app.use(function (req, res, next) {
+    res.header("Access-Control-Allow-Origin", "sttruyenhay.000webhostapp.com");
+    res.header("Access-Control-Allow-Methods", "GET,HEAD,OPTIONS,POST,PUT");
+    res.header(
+        "Access-Control-Allow-Headers",
+        "Origin, X-Requested-With, Content-Type, Accept"
+    );
+    next();
+});
 
 // const http = require("http").createServer(app);
 // const io = require("socket.io")(http, {
