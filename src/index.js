@@ -13,7 +13,10 @@ app.use(express.json());
 app.use(
     cors({
         credentials: true,
-        origin: "https://sttruyenhay.000webhostapp.com/",
+        origin: [
+            "https://sttruyenhay.000webhostapp.com/",
+            "sttruyenhay.000webhostapp.com/",
+        ],
     })
 );
 
