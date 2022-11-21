@@ -9,7 +9,6 @@ const Chapters = require("./models/chapterController");
 
 dotenv.config();
 app.use(express.json());
-const url = "https://sttruyen.xyz";
 
 app.use(
     cors({
@@ -96,6 +95,6 @@ const PORT = process.env.PORT || 5000;
 
 router(app);
 
-http.listen(PORT, () => {
+app.listen(PORT, () => {
     console.log("connected to port 5000");
 });
