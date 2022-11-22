@@ -13,7 +13,7 @@ app.use(express.json());
 app.use(
     cors({
         credentials: true,
-        origin: "https://sttruyenhay.000webhostapp.com/",
+        origin: "http://sttruyen.lovestoblog.com/?i=1",
         optionsSuccessStatus: 200,
     })
 );
